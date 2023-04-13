@@ -1,5 +1,12 @@
-from django.urls import path
-from .views import redeem, point_balance, redemption_history, authorize_redemption
+from django.urls import path, include
+from rest_framework import routers
+from .views import CustomerViewSet, RedemptionViewSet, UserViewSet
+
+router = routers.DefaultRouter()
+router.register('users', UserViewSet)
+router.register('customers', CustomerViewSet)
+router.register('redemptions', RedemptionViewSet)
 
 urlpatterns = [
-    path('redeem/',
+    path('', include(router.urls)),
+]
